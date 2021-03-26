@@ -1,0 +1,17 @@
+<h3>Template driven form</h3>
+<form #eventForm="ngForm" (ngSubmit)="submitEvent(eventForm.value)">
+
+    <div>
+        <input name="name"  type="text" ngModel required />
+        <label>Name</label>
+        <div *ngIf="eventForm.controls.name.invalid && eventForm.controls.name.touched">Name is required</div>
+    </div>
+
+    <div>
+        <input name="location" type="text" ngModel required />
+        <label>Location</label>
+    </div>
+
+    <input type="submit" value="save" [disabled]="!eventForm.valid" />
+
+</form>
