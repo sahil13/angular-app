@@ -1,4 +1,4 @@
-<h3>Template driven form</h3>
+<!-- <h3>Template driven form</h3>
 <form #eventForm="ngForm" (ngSubmit)="submitEvent(eventForm.value)">
 
     <div>
@@ -13,5 +13,35 @@
     </div>
 
     <input type="submit" value="save" [disabled]="!eventForm.valid" />
+
+</form> -->
+
+<h3>Reactive Forms</h3>
+<form [formGroup]="userform">
+    <div>
+        <label>Name</label>
+        <input formControlName="name" type="text" name="name" />
+        <div *ngIf="userform.controls.name.touched && userform.controls.name.invalid">Required</div>
+    </div>
+
+    <div>
+        <label>code</label>
+        <input formControlName="code" type="text" name="code" />
+    </div>
+
+    <div formGroupName="location">
+        <div>
+            <label>street</label>
+            <input formControlName="street" type="text" name="street" />
+        </div>
+        <div>
+            <label>House No</label>
+            <input formControlName="houseno" type="text" name="houseno" />
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
 
 </form>
