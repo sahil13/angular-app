@@ -8,7 +8,7 @@ import { route } from './common/route';
 import { EventComponent } from './event/event.component';
 import { EventDetailComponent } from './event/event-detail.component';
 import { EventDetailsActivator } from './common/event-details-activator';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEventComponent } from './event/create-event.component';
 
 @NgModule({
@@ -23,6 +23,7 @@ import { CreateEventComponent } from './event/create-event.component';
     AppRoutingModule,
     RouterModule.forRoot(route),
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [EventDetailsActivator],
   bootstrap: [AppComponent],
