@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class EventService {
   EVENTS = [
-    { id: 1, name: 'share market', location: 'Karnal' },
-    { id: 2, name: 'LIC', location: 'Panipat' },
-    { id: 3, name: 'Honda Service', location: 'NLK' },
+    { id: 1, name: 'share market', location: {street: 'Karnal', houseNo: 'g-29'} },
+    { id: 2, name: 'LIC', location: {street: 'Karnal', houseNo: 'g-29'} },
+    { id: 3, name: 'Honda Service', location: {street: 'Karnal', houseNo: 'g-29'} },
   ];
 
   getEvents() {

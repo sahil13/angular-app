@@ -20,9 +20,12 @@ export class CreateEventComponent {
 
   constructor(private eventService: EventService, private route: Router) {}
 
-  submitEvent(eventForm) {
-    console.log(eventForm);
-    this.eventService.save(eventForm);
-    this.route.navigate(['']);
+  submitEvent(eventForm){
+
+    const a = Object.keys(this.userform.controls);
+    console.log(a);
+    // this.eventService.save(eventForm);
+    // this.route.navigate(['']);
   }
+
 }

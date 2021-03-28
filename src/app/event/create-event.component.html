@@ -17,7 +17,7 @@
 </form> -->
 
 <h3>Reactive Forms</h3>
-<form [formGroup]="userform">
+<form [formGroup]="userform" (ngSubmit)="submitEvent(userform.value)">
     <div>
         <label>Name</label>
         <input formControlName="name" type="text" name="name" />
@@ -36,7 +36,7 @@
         </div>
         <div>
             <label>House No</label>
-            <input formControlName="houseno" type="text" name="houseno" />
+            <input formControlName="houseNo" type="text" name="houseNo" />
         </div>
     </div>
 
