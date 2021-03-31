@@ -10,6 +10,9 @@ import { EventDetailComponent } from './event/event-detail.component';
 import { EventDetailsActivator } from './common/event-details-activator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateEventComponent } from './event/create-event.component';
+import { CustomPipe } from './common/custom.pipe';
+import { HideDirective } from './common/hide.directive';
+import { RemoveHyphenDirective } from './common/remove-hyphen.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { CreateEventComponent } from './event/create-event.component';
     EventComponent,
     EventDetailComponent,
     CreateEventComponent,
+    CustomPipe,
+    HideDirective,
+    RemoveHyphenDirective
   ],
   imports: [
     BrowserModule,

@@ -11,9 +11,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let event of events">
-            <td>{{event.id}}</td>
+            <td>{{event.id }}</td>
             <td><a [routerLink]="['event-detail', event.id]">{{event.name}}</a></td>
-            <td>{{event.location.houseNo}}</td>
+            <td>{{event.location.houseNo | custom}}</td>
         </tr>
         <tr>
             <td>7</td>
@@ -22,3 +22,14 @@
         </tr>
     </tbody>
 </table>
+
+<ul>
+    <li hyphen *ngFor="let event of events" >
+       {{event.name | lowercase }}
+    </li>
+</ul>
+
+<!-- hide style="height: 24px;
+overflow-y: scroll;
+border: 1px solid red;
+width: 147px;"> -->

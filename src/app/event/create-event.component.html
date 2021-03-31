@@ -17,31 +17,39 @@
 </form> -->
 
 <h3>Reactive Forms</h3>
-<form [formGroup]="userform" (ngSubmit)="submitEvent(userform.value)">
+
+<form [formGroup]="userform" (ngSubmit)="submitEvent(userform)">
     <div>
         <label>Name</label>
         <input formControlName="name" type="text" name="name" />
-        <div *ngIf="userform.controls.name.touched && userform.controls.name.invalid">Required</div>
+         <div *ngIf="myFormControl.name.touched && myFormControl.name.invalid">Required</div>
     </div>
 
     <div>
         <label>code</label>
         <input formControlName="code" type="text" name="code" />
+        <div>{{errorKeys.code}}</div>
     </div>
 
-    <div formGroupName="location">
-        <div>
-            <label>street</label>
-            <input formControlName="street" type="text" name="street" />
-        </div>
-        <div>
-            <label>House No</label>
-            <input formControlName="houseNo" type="text" name="houseNo" />
+    <div formArrayName="location" *ngFor="let loc of userform.get('location')['controls']; let i=index">
+        <div [formGroupName]="i">
+            <div>
+                <label>street</label>
+                <input formControlName="street" type="text" name="street" />
+                <div *ngIf="loc.controls.street.touched && loc.controls.street.invalid">Required</div>
+            </div>
+            <div>
+                <label>House No</label>
+                <input formControlName="houseNo" type="text" name="houseNo" />
+                <div *ngIf="loc.controls.houseNo.touched && loc.controls.houseNo.invalid">Required</div>
+            </div>
         </div>
     </div>
+
+     <button (click)="pushLocation()">add</button> 
 
     <div>
-        <input type="submit" value="Save" />
+        <input type="submit" value="Save" [disabled]="userform.invalid" />
     </div>
 
 </form>
