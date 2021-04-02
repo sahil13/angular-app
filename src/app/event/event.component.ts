@@ -4,6 +4,7 @@ import { EventService } from '../common/event.service';
 
 @Component({
   selector: 'app-event',
+  styleUrls: ['../event/event.component.scss'],
   templateUrl: '../event/event.component.html',
 })
 export class EventComponent implements OnInit {
@@ -15,6 +16,6 @@ export class EventComponent implements OnInit {
     this.events = this.eventService.getEvents();
   }
   createEvent() {
-    this.route.navigate(['create']);
+    // this.route.navigate(['create']);
   }
 }

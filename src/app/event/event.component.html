@@ -1,35 +1,41 @@
+<a routerLink="">
+    << Dashboard</a> &nbsp;
 
-<button (click)="createEvent()">Create Event</button>
+        <button (click)="createEvent()">Create Event</button>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Location</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let event of events">
-            <td>{{event.id }}</td>
-            <td><a [routerLink]="['event-detail', event.id]">{{event.name}}</a></td>
-            <td>{{event.location.houseNo | custom}}</td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td><a [routerLink]="['event-detail', 88]">ggg</a></td>
-            <td>lll</td>
-        </tr>
-    </tbody>
-</table>
+        <div style="margin-top:10px">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let event of events">
+                        <td>{{event.id }}</td>
+                        <td><a [routerLink]="['event-detail', event.id]">{{event.name}}</a></td>
+                        <td>{{event.location.houseNo | custom}}</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><a [routerLink]="['event-detail', 88]">ggg</a></td>
+                        <td>lll</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-<ul>
-    <li hyphen *ngFor="let event of events" >
-       {{event.name | lowercase }}
-    </li>
-</ul>
-
-<!-- hide style="height: 24px;
+       <div class="custom-directive">
+        <h3>Directive, on hover li hides (HideDirective)</h3>
+        <ul style="display: inline-block;">
+            <li hyphen *ngFor="let event of events">
+                {{event.name | lowercase }}
+            </li>
+        </ul>
+    </div> 
+        <!-- hide style="height: 24px;
 overflow-y: scroll;
 border: 1px solid red;
 width: 147px;"> -->

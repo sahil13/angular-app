@@ -7,7 +7,7 @@ export class RemoveHyphenDirective implements OnInit {
   constructor(private ref: ElementRef) {}
   ngOnInit() {
     this.ref.nativeElement.addEventListener('mouseover', (e) => {
-      this.ref.nativeElement.style.visibility = 'hidden';
+      this.ref.nativeElement.style.background = 'yellow';
     });
   }
 }

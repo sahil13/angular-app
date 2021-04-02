@@ -13,6 +13,11 @@ import { CreateEventComponent } from './event/create-event.component';
 import { CustomPipe } from './common/custom.pipe';
 import { HideDirective } from './common/hide.directive';
 import { RemoveHyphenDirective } from './common/remove-hyphen.directive';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './post/post.component';
+import { PostDirective } from './common/post.directive';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +27,19 @@ import { RemoveHyphenDirective } from './common/remove-hyphen.directive';
     CreateEventComponent,
     CustomPipe,
     HideDirective,
-    RemoveHyphenDirective
+    RemoveHyphenDirective,
+    DashboardComponent,
+    PostComponent,
+    PostDirective,
+    AddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(route),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [EventDetailsActivator],
   bootstrap: [AppComponent],

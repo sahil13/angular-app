@@ -16,7 +16,6 @@ export class EventService {
 
   save(eventForm) {
     eventForm.id = 4;
-    console.log(eventForm);
     this.EVENTS.push(eventForm);
   }
 }

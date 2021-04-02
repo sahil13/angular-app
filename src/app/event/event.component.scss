@@ -1,0 +1,10 @@
+.custom-directive {
+    background-color: aqua;
+    padding: 6px 14px;
+    margin-top:10px;
+  & li {
+      &:not(:last-child){
+          margin-bottom:5px;
+      }
+  }
+}
