@@ -1,0 +1,14 @@
+<div style="float:left">
+    <ul>
+        <li *ngFor="let post of posts" (click)="showPostDetail(post.id)">
+            {{post.title}}
+        </li>
+    </ul>
+</div>
+
+
+<div *ngIf="postId">
+
+    <div>{{uniquePost.title}}</div>
+    <div>{{uniquePost.body}}</div>
+</div>

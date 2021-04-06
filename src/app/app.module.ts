@@ -18,6 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './post/post.component';
 import { PostDirective } from './common/post.directive';
 import { AddComponent } from './add/add.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { DynamicComponent } from './dynamic/dynamic.component';
+import { DynamicDirective } from './dynamic/dynamic.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { AddComponent } from './add/add.component';
     DashboardComponent,
     PostComponent,
     PostDirective,
-    AddComponent
+    AddComponent,
+    ProductListComponent,
+    DynamicComponent,
+    DynamicDirective
   ],
   imports: [
     BrowserModule,
