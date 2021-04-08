@@ -4,8 +4,18 @@
   > table tr td {
     border: 1px solid #e1e1e1;
   }
+  .search{
+    margin: 0 0 10px 0;
+  }
 }
 
 .fa-trash {
   cursor: pointer;
+}
+.error{
+  color:red;
+  font-size: 12px;
+}
+.mt-10{
+  margin-top:10px;
 }

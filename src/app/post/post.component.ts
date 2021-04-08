@@ -1,12 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { PostsService } from "../common/posts.service";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PostsService } from '../common/posts.service';
+
+
+
+
 @Component({
-  selector: "app-post",
-  templateUrl: "./post.component.html",
-  styleUrls: ["./post.component.scss"]
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
   posts;
+  filteredPost;
+
+  postForm = new FormGroup({
+    title: new FormControl('', [Validators.required])
+  });
+
   constructor(private postsService: PostsService) {}
 
   ngOnInit(): void {
@@ -14,21 +25,20 @@ export class PostComponent implements OnInit {
       .getPosts()
 
       .subscribe(data => {
+        this.filteredPost = data;
         this.posts = data;
       });
   }
 
   deleteRow(postId) {
-    this.posts = this.posts.filter(post => post.id !== postId);
+    this.filteredPost = this.filteredPost.filter(post => post.id !== postId);
   }
-  searchRecord(title) {
+  searchRecord(postForm) {
+    const title = postForm.controls.title.value;
     if (title) {
-      this.posts = this.posts.filter(post =>  (post.title).includes(title));
-      console.log('==');
+      this.filteredPost = this.posts.filter(post => post.title.includes(title));
     } else {
-      this.posts = this.postsService
-        .getPosts()
-        .subscribe(posts => (this.posts = posts));
+      this.filteredPost = this.posts;
     }
   }
 }

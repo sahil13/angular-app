@@ -3,9 +3,15 @@
 <div>
     To dynamically load a component, perform the below steps
     <ul>
-        <li>Component which needs to be dynamically loaded</li>
-        <li>create service to dynamically load the component</li>
-        <li>add the component into the component </li>
+        <li>Component <b>(PostComponent)</b> which needs to be dynamically loaded</li>
+        <li>create service <b>(DynamicService)</b> to dynamically load the component
+            <ol type="i">
+                <li>
+                    Component Factory Resolver <b>(ComponentFactoryResolver)</b>
+                </li>
+            </ol>
+        </li>
+        <li>Call the loadComponent method of <b>DynamicService</b> inside <b>DynamicComponent</b>  </li>
     </ul>
 </div>
 
@@ -15,4 +21,3 @@
 
 </ng-container>
 
-<ng-template #abc>test1</ng-template>

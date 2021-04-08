@@ -1,24 +1,43 @@
-<div>
-    <input type="text" #title />
-    <button (click)="searchRecord(title.value)">Search</button>
-</div>
 <div class="posts">
-    <table>
-        <thead>
+    <div class="search">
+        <form [formGroup]="postForm" (ngSubmit)="searchRecord(postForm)">
+            <div>
+                <input pInputText formControlName="title" type="text" required />
+                <div class="error" *ngIf="postForm.controls.title.invalid && postForm.controls.title.touched">Required*
+                </div>
+            </div>
+            <div class="mt-10">
+                <button type="submit" [disabled]="postForm.invalid">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <p-table [value]="filteredPost">
+        <ng-template pTemplate="header">
             <tr>
-                <td>ID</td>
-                <td>Title</td>
-                <td>Body</td>
-                <td>Action</td>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Action</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let post of posts">
-                <td>{{post.id}}</td>
+        </ng-template>
+        <ng-template pTemplate="body" let-post>
+            <tr>
+                <td>
+                    <ng-container *ngIf="post.id % 2 === 0" 
+                    [ngTemplateOutlet]="abc"
+                    [ngTemplateOutletContext]="{$implicit:'sahil'}"
+                    >
+                    </ng-container>
+                    <!-- <ng-container *ngIf="post.id % 2 !== 0" [ngTemplateOutlet]="xyz"></ng-container> -->
+                </td>
                 <td>{{post?.title}}</td>
                 <td>{{post.body}}</td>
                 <td><i (click)="deleteRow(post.id)" class="fa fa-trash"></i></td>
             </tr>
-        </tbody>
-    </table>
+        </ng-template>
+    </p-table>
 </div>
+
+<ng-template #abc let-data>{{ data }}</ng-template>
+<ng-template #xyz>Test2</ng-template>

@@ -11,7 +11,6 @@ export class DynamicComponent implements OnInit {
   @ViewChild(DynamicDirective, { static: true })
   abc1: DynamicDirective;
 
-  @ViewChild('abc') abc;
 
   constructor(private dynamicService: DynamicService) {}
 

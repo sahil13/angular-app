@@ -21,6 +21,8 @@ import { AddComponent } from './add/add.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { DynamicComponent } from './dynamic/dynamic.component';
 import { DynamicDirective } from './dynamic/dynamic.directive';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -45,9 +47,11 @@ import { DynamicDirective } from './dynamic/dynamic.directive';
     RouterModule.forRoot(route),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule,
+    InputTextModule
   ],
   providers: [EventDetailsActivator],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
