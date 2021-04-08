@@ -29,7 +29,7 @@
                     [ngTemplateOutletContext]="{$implicit:'sahil'}"
                     >
                     </ng-container>
-                    <!-- <ng-container *ngIf="post.id % 2 !== 0" [ngTemplateOutlet]="xyz"></ng-container> -->
+                     <ng-container *ngTemplateOutlet="xyz;context:{name:'Arora'}"></ng-container> 
                 </td>
                 <td>{{post?.title}}</td>
                 <td>{{post.body}}</td>
@@ -40,4 +40,4 @@
 </div>
 
 <ng-template #abc let-data>{{ data }}</ng-template>
-<ng-template #xyz>Test2</ng-template>
+<ng-template #xyz let-data let-n="name">{{n}}</ng-template>
