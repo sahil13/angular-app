@@ -14,6 +14,8 @@ export class PostComponent implements OnInit {
   posts;
   filteredPost;
 
+  name = 'sahil';
+
   postForm = new FormGroup({
     title: new FormControl('', [Validators.required])
   });
@@ -40,5 +42,8 @@ export class PostComponent implements OnInit {
     } else {
       this.filteredPost = this.posts;
     }
+  }
+  clicked(item){
+    // alert(item);
   }
 }

@@ -1,9 +1,9 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[hide]',
 })
-export class HideDirective {
+export class HideDirective implements OnInit {
   constructor(private ref: ElementRef) {}
 
   ngOnInit() {

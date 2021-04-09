@@ -12,27 +12,30 @@
         </form>
     </div>
 
-    <p-table [value]="filteredPost">
+    <p-table [value]="filteredPost" [rows]="10" [paginator]="true" [responsive]="true" autoLayout="true">
         <ng-template pTemplate="header">
             <tr>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Body</th>
+                <td>Like</td>
                 <th>Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-post>
             <tr>
                 <td>
-                    <ng-container *ngIf="post.id % 2 === 0" 
-                    [ngTemplateOutlet]="abc"
-                    [ngTemplateOutletContext]="{$implicit:'sahil'}"
-                    >
+                    {{post.id}}
+                    <ng-container *ngIf="post.id % 2 === 0" [ngTemplateOutlet]="abc"
+                        [ngTemplateOutletContext]="{$implicit:'sahil'}">
                     </ng-container>
-                     <ng-container *ngTemplateOutlet="xyz;context:{name:'Arora'}"></ng-container> 
+                    <ng-container *ngTemplateOutlet="xyz;context:{name:'Arora'}"></ng-container>
                 </td>
                 <td>{{post?.title}}</td>
                 <td>{{post.body}}</td>
+                <td>
+                    <app-like [item]="name" (like)="clicked($event)"></app-like>
+                </td>
                 <td><i (click)="deleteRow(post.id)" class="fa fa-trash"></i></td>
             </tr>
         </ng-template>
