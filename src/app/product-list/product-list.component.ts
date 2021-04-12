@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PostsService } from '../common/posts.service';
 
 @Component({
@@ -10,7 +11,9 @@ export class ProductListComponent implements OnInit {
   posts;
   postId;
   uniquePost;
-  constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService, private route: ActivatedRoute) {
+    console.log(this.route.snapshot.params['id']);
+  }
 
   ngOnInit(): void {
     this.postsService.getPosts().subscribe(posts => {

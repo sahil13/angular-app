@@ -4,8 +4,10 @@ import { DynamicComponent } from '../dynamic/dynamic.component';
 import { CreateEventComponent } from '../event/create-event.component';
 import { EventDetailComponent } from '../event/event-detail.component';
 import { EventComponent } from '../event/event.component';
+import { OverviewComponent } from '../overview/overview.component';
 import { PostComponent } from '../post/post.component';
 import { ProductListComponent } from '../product-list/product-list.component';
+import { SpecsComponent } from '../specs/specs.component';
 import { EventDetailsActivator } from './event-details-activator';
 
 export const route: Routes = [
@@ -13,12 +15,16 @@ export const route: Routes = [
   { path: 'event', component: EventComponent },
   { path: 'post', component: PostComponent },
   { path: 'post-list', component: ProductListComponent },
+  {path: 'post-list/:id', component: ProductListComponent, children: [
+    {path: 'overview', component: OverviewComponent},
+    {path: 'specs', component: SpecsComponent}
+  ]},
   { path: 'dynamic', component: DynamicComponent },
   { path: 'post/:id', component: PostComponent },
   {
     path: 'event/event-detail/:eventId',
     component: EventDetailComponent,
-    canActivate: [EventDetailsActivator],
+    canActivate: [EventDetailsActivator]
   },
-  { path: 'create', component: CreateEventComponent },
+  { path: 'create', component: CreateEventComponent }
 ];
