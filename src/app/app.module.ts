@@ -24,6 +24,7 @@ import { DynamicDirective } from './dynamic/dynamic.directive';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { LikeComponent } from './post/like.component';
+import { LikeDirective } from './post/like.directive';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LikeComponent } from './post/like.component';
     ProductListComponent,
     DynamicComponent,
     DynamicDirective,
-    LikeComponent
+    LikeComponent,
+    LikeDirective
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,17 @@
+<div>
+    <ul>
+        <li>This Component has dynamic form for search</li>
+        <li>This component using primeNg component ptable(using paginator) </li>
+        <li>PostComponent futher using LikeComponent as child component(Input/Output decorator)</li>
+        <li>Delete Icon delete the posts by Filters out the posts</li>
+    </ul>
+</div>
+
 <div class="posts">
     <div class="search">
         <form [formGroup]="postForm" (ngSubmit)="searchRecord(postForm)">
             <div>
-                <input pInputText formControlName="title" type="text" required />
+                <input pInputText formControlName="title" type="text" appUpperCase required />
                 <div class="error" *ngIf="postForm.controls.title.invalid && postForm.controls.title.touched">Required*
                 </div>
             </div>
@@ -14,7 +23,7 @@
 
     <p-table [value]="filteredPost" [rows]="10" [paginator]="true" [responsive]="true" autoLayout="true">
         <ng-template pTemplate="header">
-            <tr>
+            <tr appLike>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Body</th>
