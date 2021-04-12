@@ -23,6 +23,8 @@ import { DynamicComponent } from './dynamic/dynamic.component';
 import { DynamicDirective } from './dynamic/dynamic.directive';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import {TabViewModule} from 'primeng/tabview';
+
 import { LikeComponent } from './post/like.component';
 import { LikeDirective } from './post/like.directive';
 import { OverviewComponent } from './overview/overview.component';
@@ -57,7 +59,8 @@ import { SpecsComponent } from './specs/specs.component';
     ReactiveFormsModule,
     HttpClientModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    TabViewModule
   ],
   providers: [EventDetailsActivator],
   bootstrap: [AppComponent]

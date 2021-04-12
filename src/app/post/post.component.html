@@ -4,6 +4,7 @@
         <li>This component using primeNg component ptable(using paginator) </li>
         <li>PostComponent futher using LikeComponent as child component(Input/Output decorator)</li>
         <li>Delete Icon delete the posts by Filters out the posts</li>
+        <li>This file using ng-template, ngTemplateOutlet & ngTemplateOutletContext</li>
     </ul>
 </div>
 
@@ -27,7 +28,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Body</th>
-                <td>Like</td>
+                <th>Like</th>
                 <th>Action</th>
             </tr>
         </ng-template>
@@ -38,10 +39,10 @@
                     <ng-container *ngIf="post.id % 2 === 0" [ngTemplateOutlet]="abc"
                         [ngTemplateOutletContext]="{$implicit:'sahil'}">
                     </ng-container>
-                    <ng-container *ngTemplateOutlet="xyz;context:{name:'Arora'}"></ng-container>
+                    <ng-container *ngTemplateOutlet="xyz;context:{name:'Arora',size:'30'}"></ng-container>
                 </td>
                 <td>{{post?.title}}</td>
-                <td>{{post.body}}</td>
+                <td>{{ (post.body).length > 2 ? (post.body | slice:0:20) + '..' : '' }}</td>
                 <td>
                     <app-like [item]="name" (like)="clicked($event)"></app-like>
                 </td>
@@ -52,4 +53,4 @@
 </div>
 
 <ng-template #abc let-data>{{ data }}</ng-template>
-<ng-template #xyz let-data let-n="name">{{n}}</ng-template>
+<ng-template #xyz let-data let-n="name" let-s="size">{{n}} {{s}}</ng-template>

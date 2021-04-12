@@ -11,7 +11,10 @@ export class ProductListComponent implements OnInit {
   posts;
   postId;
   uniquePost;
-  constructor(private postsService: PostsService, private route: ActivatedRoute) {
+  constructor(
+    private postsService: PostsService,
+    private route: ActivatedRoute
+  ) {
     console.log(this.route.snapshot.params['id']);
   }
 

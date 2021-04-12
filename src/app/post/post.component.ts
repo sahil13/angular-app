@@ -38,7 +38,7 @@ export class PostComponent implements OnInit {
   searchRecord(postForm) {
     const title = postForm.controls.title.value;
     if (title) {
-      this.filteredPost = this.posts.filter(post => post.title.includes(title));
+      this.filteredPost = this.posts.filter(post => post.title.includes(title.toLowerCase()));
     } else {
       this.filteredPost = this.posts;
     }

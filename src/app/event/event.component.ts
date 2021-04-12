@@ -16,6 +16,6 @@ export class EventComponent implements OnInit {
     this.events = this.eventService.getEvents();
   }
   createEvent() {
-    // this.route.navigate(['create']);
+    this.route.navigate(['create']);
   }
 }
