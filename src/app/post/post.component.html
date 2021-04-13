@@ -6,6 +6,11 @@
             <li>PostComponent futher using LikeComponent as child component(Input/Output decorator)</li>
             <li>Delete Icon delete the posts by Filters out the posts</li>
             <li>This file using ng-template, ngTemplateOutlet & ngTemplateOutletContext</li>
+            <li>
+                <p>Sahil is coming from ng-template, <u>ng-template content not visible in html page</u></p>
+                <ng-template #abc let-data let-n="name">{{n}}</ng-template>
+                <ng-container *ngTemplateOutlet="abc; context:{name:'sahil'}"></ng-container>
+            </li>
         </ul>
     </div>
 
@@ -27,22 +32,16 @@
             <p-table [value]="filteredPost" [rows]="10" [paginator]="true" [responsive]="true" autoLayout="true">
                 <ng-template pTemplate="header">
                     <tr appLike>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Body</th>
-                        <th>Like</th>
-                        <th>Action</th>
+                        <th *ngFor="let col of cols" [pSortableColumn]="col.field" [width]="col.width">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" [hidden]="col.sort"></p-sortIcon>
+                        </th>                       
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-post>
                     <tr>
                         <td>
                             {{post.id}}
-                            <!--   <ng-container *ngIf="post.id % 2 === 0" [ngTemplateOutlet]="abc"
-                        [ngTemplateOutletContext]="{$implicit:'sahil'}">
-                    </ng-container>
-                    <ng-container *ngTemplateOutlet="xyz;context:{name:'Arora',size:'30'}"></ng-container>
-                -->
                         </td>
                         <td>{{post?.title}}</td>
                         <td>{{ (post.body).length > 2 ? (post.body | slice:0:20) + '..' : '' }}</td>
@@ -56,5 +55,3 @@
         </div>
     </div>
 </div>
-<ng-template #abc let-data>{{ data }}</ng-template>
-<ng-template #xyz let-data let-n="name" let-s="size">{{n}} {{s}}</ng-template>
