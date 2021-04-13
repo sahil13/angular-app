@@ -11,7 +11,7 @@ export class PostComponent implements OnInit {
   posts;
   filteredPost;
 
-  name = 'sahil';
+  flg = false;
 
   postForm = new FormGroup({
     title: new FormControl('', [Validators.required])
