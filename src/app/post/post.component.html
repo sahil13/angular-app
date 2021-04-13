@@ -1,56 +1,60 @@
-<div>
-    <ul>
-        <li>This Component has dynamic form for search</li>
-        <li>This component using primeNg component ptable(using paginator) </li>
-        <li>PostComponent futher using LikeComponent as child component(Input/Output decorator)</li>
-        <li>Delete Icon delete the posts by Filters out the posts</li>
-        <li>This file using ng-template, ngTemplateOutlet & ngTemplateOutletContext</li>
-    </ul>
-</div>
-
-<div class="posts">
-    <div class="search">
-        <form [formGroup]="postForm" (ngSubmit)="searchRecord(postForm)">
-            <div>
-                <input pInputText formControlName="title" type="text" appUpperCase required />
-                <div class="error" *ngIf="postForm.controls.title.invalid && postForm.controls.title.touched">Required*
-                </div>
-            </div>
-            <div class="mt-10">
-                <button type="submit" [disabled]="postForm.invalid">Search</button>
-            </div>
-        </form>
+<div class="p-grid">
+    <div class="p-col-4">
+        <ul>
+            <li>This Component has dynamic form for search</li>
+            <li>This component using primeNg component ptable(using paginator) </li>
+            <li>PostComponent futher using LikeComponent as child component(Input/Output decorator)</li>
+            <li>Delete Icon delete the posts by Filters out the posts</li>
+            <li>This file using ng-template, ngTemplateOutlet & ngTemplateOutletContext</li>
+        </ul>
     </div>
 
-    <p-table [value]="filteredPost" [rows]="10" [paginator]="true" [responsive]="true" autoLayout="true">
-        <ng-template pTemplate="header">
-            <tr appLike>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Body</th>
-                <th>Like</th>
-                <th>Action</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-post>
-            <tr>
-                <td>
-                    {{post.id}}
-                    <ng-container *ngIf="post.id % 2 === 0" [ngTemplateOutlet]="abc"
+    <div class="p-col-8">
+        <div class="search">
+            <form [formGroup]="postForm" (ngSubmit)="searchRecord(postForm)">
+                <div class="p-left">
+                    <input pInputText formControlName="title" type="text" appUpperCase required />
+                    <div class="error" *ngIf="postForm.controls.title.invalid && postForm.controls.title.touched">
+                        Required*
+                    </div>
+                </div>
+                <div class="mt-10">
+                    <button pButton type="submit" label="Search" [disabled]="postForm.invalid"></button>
+                </div>
+            </form>
+        </div>
+        <div class="mt-10">
+            <p-table [value]="filteredPost" [rows]="10" [paginator]="true" [responsive]="true" autoLayout="true">
+                <ng-template pTemplate="header">
+                    <tr appLike>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Body</th>
+                        <th>Like</th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-post>
+                    <tr>
+                        <td>
+                            {{post.id}}
+                            <!--   <ng-container *ngIf="post.id % 2 === 0" [ngTemplateOutlet]="abc"
                         [ngTemplateOutletContext]="{$implicit:'sahil'}">
                     </ng-container>
                     <ng-container *ngTemplateOutlet="xyz;context:{name:'Arora',size:'30'}"></ng-container>
-                </td>
-                <td>{{post?.title}}</td>
-                <td>{{ (post.body).length > 2 ? (post.body | slice:0:20) + '..' : '' }}</td>
-                <td>
-                    <app-like [item]="name" (like)="clicked($event)"></app-like>
-                </td>
-                <td><i (click)="deleteRow(post.id)" class="fa fa-trash"></i></td>
-            </tr>
-        </ng-template>
-    </p-table>
+                -->
+                        </td>
+                        <td>{{post?.title}}</td>
+                        <td>{{ (post.body).length > 2 ? (post.body | slice:0:20) + '..' : '' }}</td>
+                        <td>
+                            <app-like [item]="name" (like)="clicked($event)"></app-like>
+                        </td>
+                        <td><i (click)="deleteRow(post.id)" class="fa fa-trash"></i></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
 </div>
-
 <ng-template #abc let-data>{{ data }}</ng-template>
 <ng-template #xyz let-data let-n="name" let-s="size">{{n}} {{s}}</ng-template>
