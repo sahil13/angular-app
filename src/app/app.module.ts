@@ -30,6 +30,8 @@ import { LikeComponent } from './post/like.component';
 import { LikeDirective } from './post/like.directive';
 import { OverviewComponent } from './overview/overview.component';
 import { SpecsComponent } from './specs/specs.component';
+import { ContractsComponent } from './contracts/contracts.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { SpecsComponent } from './specs/specs.component';
     LikeComponent,
     LikeDirective,
     OverviewComponent,
-    SpecsComponent
+    SpecsComponent,
+    ContractsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

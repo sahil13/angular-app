@@ -1,4 +1,5 @@
 import { Router, Routes } from '@angular/router';
+import { ContractsComponent } from '../contracts/contracts.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { DynamicComponent } from '../dynamic/dynamic.component';
 import { CreateEventComponent } from '../event/create-event.component';
@@ -26,5 +27,6 @@ export const route: Routes = [
     component: EventDetailComponent,
     canActivate: [EventDetailsActivator]
   },
-  { path: 'create', component: CreateEventComponent }
+  { path: 'create', component: CreateEventComponent },
+  { path: 'contracts', component: ContractsComponent }
 ];

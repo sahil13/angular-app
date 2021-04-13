@@ -1,0 +1,66 @@
+::ng-deep {
+  .p-datatable-thead {
+    tr {
+      border-bottom: 4px solid #2f6bbd;
+    }
+    th {
+      font-size: 13px;
+      padding: 6px !important;
+      color: #000 !important;
+    }
+  }
+  .p-datatable .p-sortable-column:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+  .p-datatable-tbody {
+    td {
+      font-size: 13px;
+      & a {
+        font-weight: bold;
+        color: #2196f3;
+      }
+    }
+  }
+  .p-button {
+    padding: 0.2rem 1rem !important;
+  }
+}
+.search {
+  background-color: #e1e1e1;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  position: relative;
+  & .pi:last-child {
+    float: right;
+  }
+  & span {
+    margin-left: 14px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #656363;
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.filter-contracts {
+  position: absolute;
+  top: -2px;
+  z-index: 9999;
+  background: #e1e1e1;
+  width: 100%;
+  left: 0px;
+  height: 300px;
+  padding: 6px 12px;
+}
+.search-container{
+    position: relative;
+}
