@@ -21,17 +21,16 @@ import { AddComponent } from './add/add.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { DynamicComponent } from './dynamic/dynamic.component';
 import { DynamicDirective } from './dynamic/dynamic.directive';
-import { TableModule } from 'primeng/table';
-import { InputTextModule } from 'primeng/inputtext';
-import {TabViewModule} from 'primeng/tabview';
-import {ButtonModule} from 'primeng/button';
+
 
 import { LikeComponent } from './post/like.component';
 import { LikeDirective } from './post/like.directive';
 import { OverviewComponent } from './overview/overview.component';
 import { SpecsComponent } from './specs/specs.component';
-import { ContractsComponent } from './contracts/contracts.component';
-import { HeaderComponent } from './header/header.component';
+
+import { ContractModule } from './modules/contract/contract.module';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -52,9 +51,7 @@ import { HeaderComponent } from './header/header.component';
     LikeComponent,
     LikeDirective,
     OverviewComponent,
-    SpecsComponent,
-    ContractsComponent,
-    HeaderComponent
+    SpecsComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +60,8 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TableModule,
-    InputTextModule,
-    TabViewModule,
-    ButtonModule
+    ContractModule,
+    SharedModule
   ],
   providers: [EventDetailsActivator],
   bootstrap: [AppComponent]

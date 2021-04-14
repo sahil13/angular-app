@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ContractService } from '../common/contract.service';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ContractService } from '../../../../common/contract.service';
 
 @Component({
   selector: 'app-contracts',
@@ -7,6 +8,7 @@ import { ContractService } from '../common/contract.service';
   styleUrls: ['./contracts.component.scss']
 })
 export class ContractsComponent implements OnInit {
+  /**move this to constant */
   cols = [
     { field: 'contractno', header: 'Contract No.', width: '120' },
     { field: 'contractName', header: 'Contract Name', width: '140' },
@@ -18,9 +20,16 @@ export class ContractsComponent implements OnInit {
     { field: 'submitter', header: 'Submitter', width: '100' }
   ];
 
+  searchForm = this.fb.group({
+    contractName: new FormControl('', [Validators.required])
+  });
+
   flg = false;
   contractsData;
-  constructor(private contractService: ContractService) {}
+  constructor(
+    private contractService: ContractService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.contractsData = this.contractService.getContracts();
@@ -28,5 +37,8 @@ export class ContractsComponent implements OnInit {
 
   toggle(flg) {
     this.flg = flg;
+  }
+  resetForm() {
+    this.searchForm.reset();
   }
 }

@@ -1,5 +1,5 @@
 import { Router, Routes } from '@angular/router';
-import { ContractsComponent } from '../contracts/contracts.component';
+import { ContractsComponent } from '../modules/contract/components/contracts/contracts.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { DynamicComponent } from '../dynamic/dynamic.component';
 import { CreateEventComponent } from '../event/create-event.component';

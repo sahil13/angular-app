@@ -1,0 +1,131 @@
+<app-header></app-header>
+<div class="p-grid">
+    <div class="p-col-10 p-offset-1">
+        <div class="p-grid mt-10">
+            <div class="p-col-6 p-col-align-center title">Contract Data</div>
+            <div class="p-col-6 text-right sizes">
+                <button pButton type="submit" label="Add New Contract" styleClass="p-button-sm"></button>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search" (click)="toggle(true)">
+                <i class="pi pi-search"></i>
+                <span>Click to open search</span>
+                <i class="pi pi-chevron-down"></i>
+            </div>
+
+            <div *ngIf="flg" class="filter-contracts">
+                <form [formGroup]="searchForm">
+                    <div class="p-grid search-form">
+                        <div class="p-col-12">
+                            <div class="hide-search">
+                                <span (click)="toggle(false)">Hide Search</span>
+                                <span><i class="pi  pi-angle-up"></i></span>
+                            </div>
+                        </div>
+                        <div class="p-col-6">
+                            <div class="p-col-12">
+                                <label>Text Search</label>
+                                <input pInputText type="text" />
+
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid p-nogutter">
+                                    <div class="p-col-6">
+                                        <label>Contract Name</label>
+                                        <input pInputText type="text" formControlName="contractName" />
+                                        <div class="error" *ngIf="this.searchForm.controls.contractName.touched">
+                                            <span
+                                                *ngIf="this.searchForm.controls.contractName.invalid && this.searchForm.controls.contractName.errors.required">
+                                                Contract Name is Required</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-col-6">
+                                        <label>Contract Number</label>
+                                        <input pInputText type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <label>Short Description</label>
+                                <input pInputText type="text" />
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid p-nogutter">
+                                    <div class="p-col-6">
+                                        <label>City</label>
+                                        <input pInputText type="text" />
+                                    </div>
+                                    <div class="p-col-6">
+                                        <label>State</label>
+                                        <p-dropdown optionLabel="name"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!--End of left div-->
+                        <div class="p-col-6">
+                            <div class="p-col-12">
+                                <label>Date Range</label>
+                                <input pInputText type="text" />
+                            </div>
+                            <div class="p-col-12">
+                                <label>Craft</label>
+                                <p-dropdown optionLabel="name"></p-dropdown>
+                            </div>
+                            <div class="p-col-12">
+                                <label>Party</label>
+                                <p-dropdown optionLabel="name"></p-dropdown>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-6">
+                                        <label>User RACF</label>
+                                        <input pInputText type="text" />
+                                    </div>
+                                    <div class="p-col-6 btns">
+                                        <label>&nbsp;</label>
+                                        <button (click)="resetForm()" pButton type="button" icon="pi pi-replay"
+                                            label="Reset" styleClass="p-button-sm"></button>
+                                        <button [disabled]="this.searchForm.invalid" pButton type="submit"
+                                            label="Submit" styleClass="p-button-sm"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <p-table [value]="contractsData" [rows]="5" [paginator]="true" [responsive]="true" autoLayout="true">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th *ngFor="let col of cols" [pSortableColumn]="col.field" [width]="col.width">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-contract>
+                    <tr>
+                        <td>
+                            <a routerLink=""> {{contract.contractno}}</a>
+                        </td>
+                        <td>{{contract.contractName}}</td>
+                        <td>{{ contract.shortDesc }}</td>
+                        <td>
+                            {{contract.value}}
+                        </td>
+                        <td>{{contract.primaryParty}}</td>
+                        <td>{{contract.documents}}</td>
+                        <td>{{contract.submittedDate}}</td>
+                        <td>{{contract.submitter}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
