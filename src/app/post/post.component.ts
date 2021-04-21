@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostsService } from '../common/posts.service';
+
+import { map } from 'rxjs/operators';
+import { Post } from '../common/post';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements AfterContentInit {
   posts;
   filteredPost;
 
@@ -27,14 +30,14 @@ export class PostComponent implements OnInit {
 
   constructor(private postsService: PostsService) {}
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
-    this.postsService
-      .getPosts()
+    console.log('i am implemented');
+    this.posts = this.postsService.post$;
+  }
 
-      .subscribe(data => {
-        this.filteredPost = data;
-        this.posts = data;
-      });
+  ngAfterContentInit() {
+    console.log('post content init called');
   }
 
   deleteRow(postId) {
@@ -43,11 +46,9 @@ export class PostComponent implements OnInit {
   searchRecord(postForm) {
     const title = postForm.controls.title.value;
     if (title) {
-      this.filteredPost = this.posts.filter(post =>
-        post.title.includes(title.toLowerCase())
+      this.posts = this.postsService.post$.pipe(
+        map((posts: Post[]) => posts.filter(post => post.title.includes(title)))
       );
-    } else {
-      this.filteredPost = this.posts;
     }
   }
   clicked(item) {

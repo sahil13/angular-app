@@ -1,0 +1,111 @@
+<form [formGroup]="contractForm">
+    <p-tabView>
+        <p-tabPanel header="General Information">
+            <div class="p-grid">
+                <div class="p-col-8">
+                    <label>Contract Name</label>
+                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="contractName" />
+                    <div class="error" *ngIf="formControl.contractName.touched && formControl.contractName.invalid">
+                        Contract Name is Required</div>
+                </div>
+
+                <div class="p-col-4">
+                    <label>Value</label>
+                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="value" />
+                    <div class="error" *ngIf="formControl.value.touched && formControl.value.invalid">
+                        Value is Required</div>
+                </div>
+
+                <div class="p-col-6">
+                    <label>Value</label>
+                    <p-calendar selectionMode="range" appendTo="body" [style]="{'width': '100%'}" [readonlyInput]="true"
+                        inputId="range" showButtonBar="true"></p-calendar>
+                </div>
+
+                <div class="p-col-6">
+                    <label>Craft</label>
+                    <p-dropdown optionLabel="name" formControlName="craft"></p-dropdown>
+                    <!--  <div class="error" *ngIf="formControl.craft.touched && formControl.craft.invalid">
+                Craft is Required</div> -->
+                </div>
+
+                <div class="p-col-12">
+                    <label>Short Description</label>
+                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="shortdesc" />
+                    <div class="error" *ngIf="formControl.shortdesc.touched && formControl.shortdesc.invalid">
+                        Short Description is Required</div>
+                </div>
+
+                <div class="p-col-12">
+                    <label>Long Description</label>
+                    <textarea pInputTextarea [style]="{'width': '100%'}" formControlName="longdesc"></textarea>
+                    <div class="error" *ngIf="formControl.longdesc.touched && formControl.longdesc.invalid">
+                        Long Description is Required</div>
+                </div>
+                <div class="p-col-12">
+                    <div class="p-grid" formGroupName="addParty">
+                        <div class="p-col-4">
+                            <label>Role</label>
+                            <input pInputText formControlName="role1" [style]="{'width': '100%'}" />
+                        </div>
+                        <div class="p-col-4">
+                            <label>Name</label>
+                            <input pInputText formControlName="name1" [style]="{'width': '100%'}" />
+                        </div>
+                        <div class="p-col-3">
+                            <label>Alias</label>
+                            <input pInputText formControlName="alias1" [style]="{'width': '100%'}" />
+                        </div>
+                        <div class="p-col-1">
+                            <i class="pi pi-check add-parties" [ngClass]="{'add-parties-btn':addpartyBtn()}" (click)="addParties()"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-col-12 parties">
+                    <table cellpadding="0" cellspacing="0" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Role</th>
+                                <th>Name</th>
+                                <th>Alias</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container formArrayName="parties"
+                                *ngFor="let partie of this.contractForm.get('parties')['controls']; let i=index">
+
+                                <tr [formGroupName]="i">
+
+                                    <td>-</td>
+                                    <td> <input pInputText formControlName="role" [id]="'role'+i"
+                                            [style]="{'width': '100%'}" />
+                                        <div *ngIf="partie.get('role').touched && partie.get('role').errors?.required">
+                                            role is Required</div>
+                                    </td>
+                                    <td><input pInputText formControlName="name" [id]="'name'+i"
+                                            [style]="{'width': '100%'}" /></td>
+                                    <td> <input pInputText formControlName="alias" [id]="'alias'+i"
+                                            [style]="{'width': '100%'}" /></td>
+                                    <td><i class="pi pi-trash" (click)="removeParty(i)"></i></td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-col-12 text-right">
+                    <button pButton type="button" label="Cancel"></button>
+                    <button pButton type="button" label="Next" [disabled]="this.contractForm.invalid"></button>
+                </div>
+            </div>
+        </p-tabPanel>
+        <p-tabPanel header="Upload Master agreement">
+            Content 2
+        </p-tabPanel>
+        <p-tabPanel header="Review and submit">
+            Content 2
+        </p-tabPanel>
+    </p-tabView>
+</form>

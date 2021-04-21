@@ -1,19 +1,24 @@
-<div style="float:left">
+<div style="float:left" *ngIf="posts | async as filteredPost">
     <ul>
-        <li *ngFor="let post of posts" (click)="showPostDetail(post.id)">
+        <li *ngFor="let post of filteredPost" (click)="showPostDetail(post.id)">
             {{post.title}}
         </li>
     </ul>
 </div>
 
-
 <div *ngIf="postId">
-
     <div>{{uniquePost.title}}</div>
     <div>{{uniquePost.body}}</div>
 </div>
 
+<input name="message" [(ngModel)]="message"  />
+{{message}}
+<app-like [item]="message">
+</app-like>
+
 <a [routerLink]="['overview']">overview</a>
 <a [routerLink]="['specs']">Specs</a>
 
-<router-outlet></router-outlet>
+<router-outlet name="overview"></router-outlet>
+
+<router-outlet name="specs"></router-outlet>

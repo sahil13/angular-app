@@ -16,10 +16,14 @@ export const route: Routes = [
   { path: 'event', component: EventComponent },
   { path: 'post', component: PostComponent },
   { path: 'post-list', component: ProductListComponent },
-  {path: 'post-list/:id', component: ProductListComponent, children: [
-    {path: 'overview', component: OverviewComponent},
-    {path: 'specs', component: SpecsComponent}
-  ]},
+  {
+    path: 'post-list',
+    component: ProductListComponent,
+    children: [
+      { path: 'overview', outlet: 'overview', component: OverviewComponent },
+      { path: 'specs', outlet: 'specs', component: SpecsComponent }
+    ]
+  },
   { path: 'dynamic', component: DynamicComponent },
   { path: 'post/:id', component: PostComponent },
   {

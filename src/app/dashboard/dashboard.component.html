@@ -7,7 +7,10 @@
             <a routerLink="/post">Posts</a>
         </li>
         <li>
-            <a routerLink="/post-list">Posts List</a>
+            <a [routerLink]="['/post-list', {outlets: {
+                'overview':['overview'],
+                'specs': ['specs']
+            }}]">Posts List</a>
         </li>
         <li>
             <a routerLink="/dynamic">Dynamic loading of component</a>

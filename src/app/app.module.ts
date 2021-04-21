@@ -22,7 +22,6 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { DynamicComponent } from './dynamic/dynamic.component';
 import { DynamicDirective } from './dynamic/dynamic.directive';
 
-
 import { LikeComponent } from './post/like.component';
 import { LikeDirective } from './post/like.directive';
 import { OverviewComponent } from './overview/overview.component';
@@ -30,7 +29,7 @@ import { SpecsComponent } from './specs/specs.component';
 
 import { ContractModule } from './modules/contract/contract.module';
 import { SharedModule } from './shared/shared.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,8 +41,7 @@ import { SharedModule } from './shared/shared.module';
     HideDirective,
     RemoveHyphenDirective,
     DashboardComponent,
-    PostComponent,
-    PostDirective,
+
     AddComponent,
     ProductListComponent,
     DynamicComponent,
@@ -61,7 +59,8 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     ContractModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [EventDetailsActivator],
   bootstrap: [AppComponent]

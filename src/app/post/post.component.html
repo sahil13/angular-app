@@ -21,7 +21,7 @@
         <div class="search">
             <form [formGroup]="postForm" (ngSubmit)="searchRecord(postForm)">
                 <div class="p-left">
-                    <input pInputText formControlName="title" type="text" appUpperCase required />
+                    <input pInputText formControlName="title" type="text" required />
                     <div class="error" *ngIf="postForm.controls.title.invalid && postForm.controls.title.touched">
                         Required*
                     </div>
@@ -31,7 +31,7 @@
                 </div>
             </form>
         </div>
-        <div class="mt-10">
+        <div class="mt-10" *ngIf="posts | async as filteredPost">
             <p-table [value]="filteredPost" [rows]="10" [paginator]="true" [responsive]="true" autoLayout="true">
                 <ng-template pTemplate="header">
                     <tr appLike>
@@ -49,7 +49,7 @@
                         <td>{{post?.title}}</td>
                         <td>{{ (post.body).length > 2 ? (post.body | slice:0:20) + '..' : '' }}</td>
                         <td>
-                            <app-like [flg]="flg" (like)="clicked($event)"></app-like>
+                            <!-- <app-like [flg]="flg" (like)="clicked($event)"></app-like> -->
                         </td>
                         <td><i (click)="deleteRow(post.id)" class="fa fa-trash"></i></td>
                     </tr>

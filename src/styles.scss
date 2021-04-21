@@ -14,3 +14,7 @@ body {
 .mt-10 {
   margin-top: 10px;
 }
+
+*:focus {
+  box-shadow: none !important;
+}

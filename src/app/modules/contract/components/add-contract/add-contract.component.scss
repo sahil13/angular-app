@@ -1,0 +1,69 @@
+label {
+  display: block;
+  margin-bottom: 4px;
+}
+.text-right {
+  text-align: right;
+  & button:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.parties {
+  table tbody tr {
+    height: 50px;
+    td {
+      border-bottom: 1px solid #e1e1e1;
+      &:not(:last-child) {
+        padding-right: 10px;
+      }
+    }
+  }
+  table tr th {
+    text-align: left;
+    border-bottom: 2px solid #e1e1e1;
+  }
+}
+.add-parties {
+  margin-top: 28px;
+  font-weight: bold;
+  font-size: 28px;
+  cursor: pointer;
+  color: #59d459;
+  &-btn {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}
+:host::ng-deep {
+  .p-tabview .p-tabview-nav,
+  .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    border-bottom: none;
+  }
+
+  .p-tabview-nav {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+    li a {
+      padding: 8px !important;
+    }
+  }
+  .p-highlight a {
+    border-bottom: 2px solid #2196f3 !important;
+  }
+
+  li.p-highlight::after {
+    content: '\25bc';
+    position: relative;
+    display: block;
+    color: #2397f3;
+    top: -6px;
+    text-align: center;
+  }
+}
