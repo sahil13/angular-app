@@ -42,6 +42,8 @@
                     <div class="error" *ngIf="formControl.longdesc.touched && formControl.longdesc.invalid">
                         Long Description is Required</div>
                 </div>
+
+
                 <div class="p-col-12">
                     <div class="p-grid" formGroupName="addParty">
                         <div class="p-col-4">
@@ -57,7 +59,8 @@
                             <input pInputText formControlName="alias1" [style]="{'width': '100%'}" />
                         </div>
                         <div class="p-col-1">
-                            <i class="pi pi-check add-parties" [ngClass]="{'add-parties-btn':addpartyBtn()}" (click)="addParties()"></i>
+                            <i class="pi pi-check add-parties" [ngClass]="{'add-parties-btn':addpartyBtn()}"
+                                (click)="addParties()"></i>
                         </div>
                     </div>
                 </div>
@@ -97,13 +100,52 @@
                 </div>
                 <div class="p-col-12 text-right">
                     <button pButton type="button" label="Cancel"></button>
-                 
-                    <button pButton type="button" label="Next" (click)="openNext()" [disabled]="this.contractForm.invalid || this.contractForm.get('parties').length===0"></button>
+
+                    <button pButton type="button" label="Next" (click)="openNext()"
+                        [disabled]="this.contractForm.invalid"></button>
                 </div>
             </div>
         </p-tabPanel>
         <p-tabPanel header="Upload Master agreement">
-            Content 2
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <p-fileUpload name="myfile[]" multiple="multiple" customUpload="true"
+                        (uploadHandler)="myUploader($event)">
+                    </p-fileUpload>
+                </div>
+                <div class="p-col-12">
+                    <label>Document Name</label>
+                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="documentname" />
+                    <div class="error" *ngIf="formControl.documentname.touched && formControl.documentname.invalid">
+                        Document Name is Required</div>
+                </div>
+                <div class="p-col-12">
+                    <label>Description</label>
+                    <textarea pInputTextarea [style]="{'width': '100%'}" formControlName="documentdesc"></textarea>
+                    <div class="error" *ngIf="formControl.documentdesc.touched && formControl.documentdesc.invalid">
+                        Document description is Required</div>
+                </div>
+
+                <div class="p-col-12">
+                    <div class="p-grid" formGroupName="addCityState">
+                        <div class="p-col-6">
+                            <label>City</label>
+                            <input pInputText formControlName="city1" [style]="{'width': '100%'}" />
+                        </div>
+                        <div class="p-col-5">
+                            <label>State</label>
+                            <input pInputText formControlName="state1" [style]="{'width': '100%'}" />
+                        </div>
+
+                        <div class="p-col-1">
+                            <i class="pi pi-check add-parties" [ngClass]="{'add-parties-btn':addCityStateBtn()}"
+                                ></i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
         </p-tabPanel>
         <p-tabPanel header="Review and submit">
             Content 3

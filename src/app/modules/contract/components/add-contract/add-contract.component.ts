@@ -24,7 +24,13 @@ export class AddContractComponent implements OnInit {
       name1: new FormControl('', []),
       alias1: new FormControl('', [])
     }),
-    parties: new FormArray([])
+    parties: new FormArray([]),
+    documentname: new FormControl('', [Validators.required]),
+    documentdesc: new FormControl('', [Validators.required]),
+    addCityState: new FormGroup({
+      city1: new FormControl(),
+      state1: new FormControl()
+    })
   });
 
   index = 0;
@@ -62,10 +68,22 @@ export class AddContractComponent implements OnInit {
     const role1 = addParty.get('role1').value;
     const name1 = addParty.get('name1').value;
     const alias1 = addParty.get('alias1').value;
-    console.log(role1, 'name=' , name1, 'alias=', alias1);
     if (!(role1 && name1 && alias1)) {
       return true;
     }
+  }
+
+  addCityStateBtn(){
+    const addCityState = this.contractForm.get('addCityState') as FormGroup;
+    const city1 = addCityState.get('city1').value;
+    const state1 = addCityState.get('state1').value;
+    if (!(city1 && state1)) {
+      return true;
+    }
+  }
+
+  myUploader(event) {
+    console.log('red', event);
   }
 
   constructor(private fb: FormBuilder) {}
