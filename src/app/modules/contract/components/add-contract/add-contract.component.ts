@@ -27,6 +27,12 @@ export class AddContractComponent implements OnInit {
     parties: new FormArray([])
   });
 
+  index = 0;
+
+  openNext() {
+    this.index = this.index === 2 ? 0 : this.index + 1;
+  }
+
   getparties(role1, name1, alias1) {
     return this.fb.group({
       role: new FormControl(role1, [Validators.required]),
@@ -56,7 +62,8 @@ export class AddContractComponent implements OnInit {
     const role1 = addParty.get('role1').value;
     const name1 = addParty.get('name1').value;
     const alias1 = addParty.get('alias1').value;
-    if (role1 === '' || name1 === '' || alias1 === '') {
+    console.log(role1, 'name=' , name1, 'alias=', alias1);
+    if (!(role1 && name1 && alias1)) {
       return true;
     }
   }

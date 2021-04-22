@@ -1,5 +1,5 @@
 <form [formGroup]="contractForm">
-    <p-tabView>
+    <p-tabView [(activeIndex)]="index">
         <p-tabPanel header="General Information">
             <div class="p-grid">
                 <div class="p-col-8">
@@ -19,7 +19,7 @@
                 <div class="p-col-6">
                     <label>Value</label>
                     <p-calendar selectionMode="range" appendTo="body" [style]="{'width': '100%'}" [readonlyInput]="true"
-                        inputId="range" showButtonBar="true"></p-calendar>
+                        inputId="range" showIcon="true" showButtonBar="true"></p-calendar>
                 </div>
 
                 <div class="p-col-6">
@@ -70,7 +70,7 @@
                                 <th>Role</th>
                                 <th>Name</th>
                                 <th>Alias</th>
-                                <th>Action</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,7 +97,8 @@
                 </div>
                 <div class="p-col-12 text-right">
                     <button pButton type="button" label="Cancel"></button>
-                    <button pButton type="button" label="Next" [disabled]="this.contractForm.invalid"></button>
+                 
+                    <button pButton type="button" label="Next" (click)="openNext()" [disabled]="this.contractForm.invalid || this.contractForm.get('parties').length===0"></button>
                 </div>
             </div>
         </p-tabPanel>
@@ -105,7 +106,7 @@
             Content 2
         </p-tabPanel>
         <p-tabPanel header="Review and submit">
-            Content 2
+            Content 3
         </p-tabPanel>
     </p-tabView>
 </form>

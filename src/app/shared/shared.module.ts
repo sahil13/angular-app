@@ -12,7 +12,7 @@ import { PostDirective } from '../common/post.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
-
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     FormsModule,
     ReactiveFormsModule,
     CalendarModule,
-    InputTextareaModule
+    InputTextareaModule,
+    FileUploadModule
   ],
   exports: [
     TableModule,
@@ -43,7 +44,8 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
     FormsModule,
     ReactiveFormsModule,
     CalendarModule,
-    InputTextareaModule
+    InputTextareaModule,
+    FileUploadModule
   ]
 })
 export class SharedModule { }

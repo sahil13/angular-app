@@ -1,6 +1,8 @@
 label {
   display: block;
   margin-bottom: 4px;
+  font-size: 12px;
+    font-weight: 600;
 }
 .text-right {
   text-align: right;
@@ -27,6 +29,8 @@ label {
   table tr th {
     text-align: left;
     border-bottom: 2px solid #e1e1e1;
+    font-weight: 500;
+    font-size: 13px;
   }
 }
 .add-parties {
@@ -41,6 +45,9 @@ label {
   }
 }
 :host::ng-deep {
+  .p-inputtext {
+    padding: 0.2rem 0.4rem;
+  }
   .p-tabview .p-tabview-nav,
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {
     border-bottom: none;
@@ -52,6 +59,7 @@ label {
     justify-content: space-between;
     li a {
       padding: 8px !important;
+      pointer-events: none;
     }
   }
   .p-highlight a {
