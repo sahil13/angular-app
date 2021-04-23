@@ -1,6 +1,6 @@
-<form [formGroup]="contractForm">
-    <p-tabView [(activeIndex)]="index">
-        <p-tabPanel header="General Information">
+<p-tabView [(activeIndex)]="index">
+    <p-tabPanel header="General Information">
+        <form [formGroup]="contractForm">
             <div class="p-grid">
                 <div class="p-col-8">
                     <label>Contract Name</label>
@@ -105,13 +105,14 @@
 
                 <div class=" p-col-12 text-right">
                     <button pButton type="button" label="Cancel"></button>
-
                     <button pButton type="button" label="Next" (click)="openNext(1)"
-                        [disabled]="this.contractForm.invalid"></button>
+                        [disabled]="this.contractForm.invalid || parties.length<2"></button>
                 </div>
             </div>
-        </p-tabPanel>
-        <p-tabPanel header="Upload Master agreement">
+        </form>
+    </p-tabPanel>
+    <p-tabPanel header="Upload Master agreement">
+        <form [formGroup]="uploadForm">
             <div class="p-grid">
                 <div class="p-col-12">
                     <p-fileUpload name="myfile[]" multiple="multiple" customUpload="true"
@@ -121,13 +122,15 @@
                 <div class="p-col-12">
                     <label>Document Name</label>
                     <input pInputText type="text" [style]="{'width': '100%'}" formControlName="documentname" />
-                    <div class="error" *ngIf="formControl.documentname.touched && formControl.documentname.invalid">
+                    <div class="error"
+                        *ngIf="uploadFormControl.documentname.touched && uploadFormControl.documentname.invalid">
                         Document Name is Required</div>
                 </div>
                 <div class="p-col-12">
                     <label>Description</label>
                     <textarea pInputTextarea [style]="{'width': '100%'}" formControlName="documentdesc"></textarea>
-                    <div class="error" *ngIf="formControl.documentdesc.touched && formControl.documentdesc.invalid">
+                    <div class="error"
+                        *ngIf="uploadFormControl.documentdesc.touched && uploadFormControl.documentdesc.invalid">
                         Document description is Required</div>
                 </div>
 
@@ -161,7 +164,7 @@
                         </thead>
                         <tbody>
                             <ng-container formArrayName="locations"
-                                *ngFor="let partie of this.contractForm.get('locations')['controls']; let i=index">
+                                *ngFor="let partie of this.uploadForm.get('locations')['controls']; let i=index">
 
                                 <tr [formGroupName]="i">
 
@@ -173,7 +176,7 @@
                                     </td>
                                     <td><input pInputText formControlName="state" [id]="'state'+i"
                                             [style]="{'width': '100%'}" /></td>
-                                   
+
                                     <td><i class="pi pi-trash" (click)="removeCityState(i)"></i></td>
                                 </tr>
                             </ng-container>
@@ -185,16 +188,16 @@
                     <button pButton type="button" label="Cancel"></button>
 
                     <button pButton type="button" label="Next" (click)="openNext(2)"
-                        [disabled]="this.contractForm.invalid"></button>
+                        [disabled]="this.uploadForm.invalid"></button>
                 </div>
-                
+
 
                 <div>
                 </div>
             </div>
-        </p-tabPanel>
-        <p-tabPanel header="Review and submit">
-            Content 3
-        </p-tabPanel>
-    </p-tabView>
-</form>
+        </form>
+    </p-tabPanel>
+    <p-tabPanel header="Review and submit">
+        Content 3
+    </p-tabPanel>
+</p-tabView>

@@ -24,7 +24,10 @@ export class AddContractComponent implements OnInit {
       name1: new FormControl('', []),
       alias1: new FormControl('', [])
     }),
-    parties: new FormArray([]),
+    parties: new FormArray([])
+  });
+
+  uploadForm = this.fb.group({
     documentname: new FormControl('', [Validators.required]),
     documentdesc: new FormControl('', [Validators.required]),
     addCityState: new FormGroup({
@@ -58,7 +61,7 @@ export class AddContractComponent implements OnInit {
   }
 
   addStateCity() {
-    const addCityState = this.contractForm.get('addCityState') as FormGroup;
+    const addCityState = this.uploadForm.get('addCityState') as FormGroup;
     const city1 = addCityState.get('city1').value;
     const state1 = addCityState.get('state1').value;
     return (this.contractForm.get('locations') as FormArray).push(
@@ -90,8 +93,8 @@ export class AddContractComponent implements OnInit {
     (this.contractForm.get('parties') as FormArray).removeAt(i);
   }
 
-  removeCityState(i){
-    (this.contractForm.get('locations') as FormArray).removeAt(i);
+  removeCityState(i) {
+    (this.uploadForm.get('locations') as FormArray).removeAt(i);
   }
 
   addpartyBtn() {
@@ -105,7 +108,7 @@ export class AddContractComponent implements OnInit {
   }
 
   addCityStateBtn() {
-    const addCityState = this.contractForm.get('addCityState') as FormGroup;
+    const addCityState = this.uploadForm.get('addCityState') as FormGroup;
     const city1 = addCityState.get('city1').value;
     const state1 = addCityState.get('state1').value;
     if (!(city1 && state1)) {
@@ -125,5 +128,8 @@ export class AddContractComponent implements OnInit {
 
   get formControl() {
     return this.contractForm.controls;
+  }
+  get uploadFormControl() {
+    return this.uploadForm.controls;
   }
 }
