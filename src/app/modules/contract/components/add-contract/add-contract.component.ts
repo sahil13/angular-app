@@ -30,13 +30,40 @@ export class AddContractComponent implements OnInit {
     addCityState: new FormGroup({
       city1: new FormControl(),
       state1: new FormControl()
-    })
+    }),
+    locations: new FormArray([])
   });
 
   index = 0;
 
-  openNext() {
-    this.index = this.index === 2 ? 0 : this.index + 1;
+  inpObj = {
+    fields: [
+      { inputType: 'text', labelName: 'Role', formControlName: 'role1' },
+      { inputType: 'text', labelName: 'Name', formControlName: 'role1' },
+      { inputType: 'text', labelName: 'Alias', formControlName: 'role1' }
+    ],
+    formGroupName1: this.contractForm.get('addParty'),
+    mainForm: this.contractForm
+  };
+
+  openNext(i) {
+    this.index = i;
+  }
+
+  getCityState(city1, state1) {
+    return this.fb.group({
+      city: new FormControl(city1, [Validators.required]),
+      state: new FormControl(state1, [Validators.required])
+    });
+  }
+
+  addStateCity() {
+    const addCityState = this.contractForm.get('addCityState') as FormGroup;
+    const city1 = addCityState.get('city1').value;
+    const state1 = addCityState.get('state1').value;
+    return (this.contractForm.get('locations') as FormArray).push(
+      this.getCityState(city1, state1)
+    );
   }
 
   getparties(role1, name1, alias1) {
@@ -63,6 +90,10 @@ export class AddContractComponent implements OnInit {
     (this.contractForm.get('parties') as FormArray).removeAt(i);
   }
 
+  removeCityState(i){
+    (this.contractForm.get('locations') as FormArray).removeAt(i);
+  }
+
   addpartyBtn() {
     const addParty = this.contractForm.get('addParty') as FormGroup;
     const role1 = addParty.get('role1').value;
@@ -73,7 +104,7 @@ export class AddContractComponent implements OnInit {
     }
   }
 
-  addCityStateBtn(){
+  addCityStateBtn() {
     const addCityState = this.contractForm.get('addCityState') as FormGroup;
     const city1 = addCityState.get('city1').value;
     const state1 = addCityState.get('state1').value;
@@ -86,7 +117,9 @@ export class AddContractComponent implements OnInit {
     console.log('red', event);
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    // console.log(' ===', this.contractForm.get('addParty'));
+  }
 
   ngOnInit(): void {}
 
