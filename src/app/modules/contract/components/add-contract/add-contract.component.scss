@@ -2,7 +2,7 @@ label {
   display: block;
   margin-bottom: 4px;
   font-size: 12px;
-    font-weight: 600;
+  font-weight: 600;
 }
 .text-right {
   text-align: right;
@@ -33,6 +33,14 @@ label {
     font-size: 13px;
   }
 }
+.party-control {
+  border: 0;
+  pointer-events: none;
+}
+.editable-control{
+  border: 1px solid #ced4da !important;
+  pointer-events: auto !important;
+}
 .add-parties {
   margin-top: 28px;
   font-weight: bold;
@@ -47,6 +55,7 @@ label {
 :host::ng-deep {
   .p-inputtext {
     padding: 0.2rem 0.4rem;
+    width:100%;
   }
   .p-tabview .p-tabview-nav,
   .p-tabview .p-tabview-nav li .p-tabview-nav-link {

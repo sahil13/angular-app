@@ -13,6 +13,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {CheckboxModule} from 'primeng/checkbox';
+import { TooltipModule } from 'primeng/tooltip';
+
 
 
 @NgModule({
@@ -32,7 +37,11 @@ import {FileUploadModule} from 'primeng/fileupload';
     ReactiveFormsModule,
     CalendarModule,
     InputTextareaModule,
-    FileUploadModule
+    FileUploadModule,
+    AutoCompleteModule,
+    RadioButtonModule,
+    CheckboxModule,
+    TooltipModule
   ],
   exports: [
     TableModule,
@@ -45,7 +54,11 @@ import {FileUploadModule} from 'primeng/fileupload';
     ReactiveFormsModule,
     CalendarModule,
     InputTextareaModule,
-    FileUploadModule
+    FileUploadModule,
+    AutoCompleteModule,
+    RadioButtonModule,
+    CheckboxModule,
+    TooltipModule
   ]
 })
 export class SharedModule { }

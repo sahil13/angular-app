@@ -1,7 +1,7 @@
 <div class="p-grid">
-    <div class="p-col-4">
+    <div class="p-col-4" >
         <ul>
-            <li>This Component has dynamic form for search</li>
+            <li pTooltip="Enter your username">This Component has dynamic form for search</li>
             <li>This component using primeNg component ptable(using paginator) </li>
             <li>PostComponent futher using LikeComponent as child component(Input/Output decorator)</li>
             <li>Delete Icon delete the posts by Filters out the posts</li>
@@ -38,7 +38,7 @@
                         <th *ngFor="let col of cols" [pSortableColumn]="col.field" [width]="col.width">
                             {{col.header}}
                             <p-sortIcon [field]="col.field" [hidden]="col.sort"></p-sortIcon>
-                        </th>                       
+                        </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-post>
@@ -46,7 +46,7 @@
                         <td>
                             {{post.id}}
                         </td>
-                        <td>{{post?.title}}</td>
+                        <td >{{post?.title}}</td>
                         <td>{{ (post.body).length > 2 ? (post.body | slice:0:20) + '..' : '' }}</td>
                         <td>
                             <!-- <app-like [flg]="flg" (like)="clicked($event)"></app-like> -->

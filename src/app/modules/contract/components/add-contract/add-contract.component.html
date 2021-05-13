@@ -4,22 +4,22 @@
             <div class="p-grid">
                 <div class="p-col-8">
                     <label>Contract Name</label>
-                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="contractName" />
+                    <input pInputText type="text" formControlName="contractName" />
                     <div class="error" *ngIf="formControl.contractName.touched && formControl.contractName.invalid">
                         Contract Name is Required</div>
                 </div>
 
                 <div class="p-col-4">
                     <label>Value</label>
-                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="value" />
+                    <input pInputText type="text" formControlName="value" />
                     <div class="error" *ngIf="formControl.value.touched && formControl.value.invalid">
                         Value is Required</div>
                 </div>
 
                 <div class="p-col-6">
                     <label>Value</label>
-                    <p-calendar selectionMode="range" appendTo="body" [style]="{'width': '100%'}" [readonlyInput]="true"
-                        inputId="range" showIcon="true" showButtonBar="true"></p-calendar>
+                    <p-calendar selectionMode="range" appendTo="body" [readonlyInput]="true" inputId="range"
+                        showIcon="true" showButtonBar="true"></p-calendar>
                 </div>
 
                 <div class="p-col-6">
@@ -31,14 +31,14 @@
 
                 <div class="p-col-12">
                     <label>Short Description</label>
-                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="shortdesc" />
+                    <input pInputText type="text" formControlName="shortdesc" />
                     <div class="error" *ngIf="formControl.shortdesc.touched && formControl.shortdesc.invalid">
                         Short Description is Required</div>
                 </div>
 
                 <div class="p-col-12">
                     <label>Long Description</label>
-                    <textarea pInputTextarea [style]="{'width': '100%'}" formControlName="longdesc"></textarea>
+                    <textarea pInputTextarea formControlName="longdesc"></textarea>
                     <div class="error" *ngIf="formControl.longdesc.touched && formControl.longdesc.invalid">
                         Long Description is Required</div>
                 </div>
@@ -51,18 +51,19 @@
                     <div class="p-grid" formGroupName="addParty">
                         <div class="p-col-4">
                             <label>Role</label>
-                            <input pInputText formControlName="role1" [style]="{'width': '100%'}" />
+                            <p-dropdown [options]="roles" optionLabel="name" formControlName="role1"></p-dropdown>
                         </div>
                         <div class="p-col-4">
                             <label>Name</label>
-                            <input pInputText formControlName="name1" [style]="{'width': '100%'}" />
+                            <p-autoComplete formControlName="name1" [suggestions]="output"
+                                (completeMethod)="search($event)"></p-autoComplete>
                         </div>
                         <div class="p-col-3">
                             <label>Alias</label>
-                            <input pInputText formControlName="alias1" [style]="{'width': '100%'}" />
+                            <input pInputText formControlName="alias1" />
                         </div>
                         <div class="p-col-1">
-                            <i class="pi pi-check add-parties" [ngClass]="{'add-parties-btn':addpartyBtn()}"
+                            <i class="pi pi-check add-parties" [ngClass]="{'add-parties-btn': addpartyBtn()}"
                                 (click)="addParties()"></i>
                         </div>
                     </div>
@@ -72,7 +73,7 @@
                     <table cellpadding="0" cellspacing="0" style="width:100%">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>Main</th>
                                 <th>Role</th>
                                 <th>Name</th>
                                 <th>Alias</th>
@@ -82,20 +83,36 @@
                         <tbody>
                             <ng-container formArrayName="parties"
                                 *ngFor="let partie of this.contractForm.get('parties')['controls']; let i=index">
-
                                 <tr [formGroupName]="i">
+                                    <td>
+                                        <!-- <input type="radio" name="main" formControlName="main" [id]="'main'+i" /> -->
+                                        <p-radioButton name="main" formControlName="main" [value]="i+1"
+                                            (onClick)="setMainValue(i)" [inputId]="'main'+i">
+                                        </p-radioButton>
+                                        <!-- <p-checkbox formControlName="main" value="i" binary="true" inputId="binary"></p-checkbox> -->
+                                    </td>
+                                    <td>
+                                        <p-dropdown [options]="roles" optionLabel="name" formControlName="role"
+                                            [id]="'role'+i" class="party-control"
+                                            [ngClass]="{'editable-control': editable === i}"></p-dropdown>
 
-                                    <td>-</td>
-                                    <td> <input pInputText formControlName="role" [id]="'role'+i"
-                                            [style]="{'width': '100%'}" />
                                         <div *ngIf="partie.get('role').touched && partie.get('role').errors?.required">
                                             role is Required</div>
                                     </td>
-                                    <td><input pInputText formControlName="name" [id]="'name'+i"
-                                            [style]="{'width': '100%'}" /></td>
+                                    <td>
+                                        <!-- <input pInputText formControlName="name" [id]="'name'+i" class="party-control"
+                                            [ngClass]="{'editable-control': editable === i}" /> -->
+                                        <p-autoComplete formControlName="name" [suggestions]="output"
+                                            (completeMethod)="search($event)"
+                                            [ngClass]="{'editable-control': editable === i}"></p-autoComplete>
+                                    </td>
                                     <td> <input pInputText formControlName="alias" [id]="'alias'+i"
-                                            [style]="{'width': '100%'}" /></td>
-                                    <td><i class="pi pi-trash" (click)="removeParty(i)"></i></td>
+                                            class="party-control" [ngClass]="{'editable-control': editable === i}" />
+                                    </td>
+                                    <td>
+                                        <i class="pi pi-pencil" (click)="makeFieldsEditable(i)"></i>
+                                        <i class="pi pi-trash" (click)="removeParty(i)"></i>
+                                    </td>
                                 </tr>
                             </ng-container>
                         </tbody>
@@ -121,14 +138,14 @@
                 </div>
                 <div class="p-col-12">
                     <label>Document Name</label>
-                    <input pInputText type="text" [style]="{'width': '100%'}" formControlName="documentname" />
+                    <input pInputText type="text" formControlName="documentname" />
                     <div class="error"
                         *ngIf="uploadFormControl.documentname.touched && uploadFormControl.documentname.invalid">
                         Document Name is Required</div>
                 </div>
                 <div class="p-col-12">
                     <label>Description</label>
-                    <textarea pInputTextarea [style]="{'width': '100%'}" formControlName="documentdesc"></textarea>
+                    <textarea pInputTextarea formControlName="documentdesc"></textarea>
                     <div class="error"
                         *ngIf="uploadFormControl.documentdesc.touched && uploadFormControl.documentdesc.invalid">
                         Document description is Required</div>
@@ -138,11 +155,11 @@
                     <div class="p-grid" formGroupName="addCityState">
                         <div class="p-col-6">
                             <label>City</label>
-                            <input pInputText formControlName="city1" [style]="{'width': '100%'}" />
+                            <input pInputText formControlName="city1" />
                         </div>
                         <div class="p-col-5">
                             <label>State</label>
-                            <input pInputText formControlName="state1" [style]="{'width': '100%'}" />
+                            <input pInputText formControlName="state1" />
                         </div>
 
                         <div class="p-col-1">
@@ -169,13 +186,11 @@
                                 <tr [formGroupName]="i">
 
                                     <td>-</td>
-                                    <td> <input pInputText formControlName="city" [id]="'city'+i"
-                                            [style]="{'width': '100%'}" />
+                                    <td> <input pInputText formControlName="city" [id]="'city'+i" />
                                         <div *ngIf="partie.get('city').touched && partie.get('city').errors?.required">
                                             role is Required</div>
                                     </td>
-                                    <td><input pInputText formControlName="state" [id]="'state'+i"
-                                            [style]="{'width': '100%'}" /></td>
+                                    <td><input pInputText formControlName="state" [id]="'state'+i" /></td>
 
                                     <td><i class="pi pi-trash" (click)="removeCityState(i)"></i></td>
                                 </tr>
@@ -199,5 +214,6 @@
     </p-tabPanel>
     <p-tabPanel header="Review and submit">
         Content 3
+        submit
     </p-tabPanel>
 </p-tabView>

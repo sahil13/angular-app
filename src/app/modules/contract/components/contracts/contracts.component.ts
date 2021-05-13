@@ -11,6 +11,14 @@ import { ContractService } from '../../../../common/contract.service';
 export class ContractsComponent implements OnInit {
   Constants = Constants;
 
+  rolePermissionArray = [
+    {
+      admin: ['write', 'update', 'delete', 'read']
+    }
+  ];
+
+  users: any = [{ name: 'sahil', role: 'admin' }];
+
   searchForm = this.fb.group({
     contractName: new FormControl('', [Validators.required])
   });
@@ -21,7 +29,9 @@ export class ContractsComponent implements OnInit {
   constructor(
     private contractService: ContractService,
     private fb: FormBuilder
-  ) {}
+  ) {
+    console.log(this.rolePermissionArray[0].admin.includes('delete'));
+  }
 
   ngOnInit(): void {
     this.contractsData = this.contractService.getContracts();

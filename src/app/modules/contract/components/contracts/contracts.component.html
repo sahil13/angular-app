@@ -1,4 +1,17 @@
 <app-header></app-header>
+
+<ng-template #loading let-abc="price">
+    sahil
+    {{abc}}
+</ng-template>
+
+<div *ngIf="!flg else loading" >
+    Arora
+</div>
+
+<ng-container *ngTemplateOutlet="loading;context:{price:5}">
+</ng-container>
+
 <div class="p-grid">
     <div class="p-col-10 p-offset-1">
         <div class="p-grid mt-10">
@@ -102,7 +115,12 @@
         </div>
         <div>
 
-            <p-table [value]="contractsData" [rows]="5" [paginator]="true" [responsive]="true" autoLayout="true">
+            <div style="display:flex">
+                <input type="text" pInputText>
+                <button [disabled]="!rolePermissionArray[0].admin.includes('delete')">Delete</button>
+            </div>
+
+            <!--  <p-table [value]="contractsData" [rows]="5" [paginator]="true" [responsive]="true" autoLayout="true">
                 <ng-template pTemplate="header">
                     <tr>
                         <th *ngFor="let col of Constants.contractCols" [pSortableColumn]="col.field"
@@ -128,11 +146,13 @@
                         <td>{{contract.submitter}}</td>
                     </tr>
                 </ng-template>
-            </p-table>
+            </p-table> -->
         </div>
     </div>
 </div>
 
-<p-dialog header="Title" [(visible)]="display" [style]="{width: '50vw',height:'80vh'}">
-   <app-add-contract></app-add-contract>
+
+
+<p-dialog header="Title" *ngIf="display" [(visible)]="display" [style]="{width: '50vw',height:'80vh'}">
+    <app-add-contract></app-add-contract>
 </p-dialog>
