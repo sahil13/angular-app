@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Post } from './post';
 
 @Injectable({
@@ -8,7 +9,20 @@ import { Post } from './post';
 })
 export class PostsService {
   private URL = 'https://jsonplaceholder.typicode.com/posts/';
-  constructor(private http: HttpClient) {}
 
-  post$ = this.http.get<Post[]>(this.URL);
+  post$ = this.http.get<Post[]>(this.URL).pipe(
+    map(data => {
+      return data.map(
+        product =>
+          ({
+            ...product,
+            title: product.title + 'sss'
+          } as Post)
+      );
+    })
+  );
+
+  constructor(private http: HttpClient) {
+    // console.log('inside service', this.post$);
+  }
 }

@@ -32,7 +32,7 @@ export class PostComponent implements AfterContentInit {
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
-    console.log('i am implemented');
+    console.log('i am implemented', this.postsService.post$);
     this.posts = this.postsService.post$;
   }
 
@@ -46,9 +46,9 @@ export class PostComponent implements AfterContentInit {
   searchRecord(postForm) {
     const title = postForm.controls.title.value;
     if (title) {
-      this.posts = this.postsService.post$.pipe(
-        map((posts: Post[]) => posts.filter(post => post.title.includes(title)))
-      );
+      // this.posts = this.postsService.post$.pipe(
+      //   map((posts: Post[]) => posts.filter(post => post.title.includes(title)))
+      // );
     }
   }
   clicked(item) {

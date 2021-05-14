@@ -30,6 +30,7 @@ import { SpecsComponent } from './specs/specs.component';
 import { ContractModule } from './modules/contract/contract.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LikeComponent,
     LikeDirective,
     OverviewComponent,
-    SpecsComponent
+    SpecsComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

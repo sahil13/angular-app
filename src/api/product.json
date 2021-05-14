@@ -1,0 +1,17 @@
+[
+  {
+    "productName": "Neam Soap",
+    "price": 100,
+    "weight": "200gm"
+  },
+  {
+    "productName": "Dove",
+    "price": 80,
+    "weight": "100gm"
+  },
+  {
+    "productName": "Godrej",
+    "price": 70,
+    "weight": "80gm"
+  }
+]
