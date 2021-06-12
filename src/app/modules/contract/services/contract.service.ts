@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Contract } from '../model/contract';
 
 @Injectable({
@@ -7,6 +8,10 @@ import { Contract } from '../model/contract';
 })
 export class ContractService {
   private URL = 'http://localhost/oShop/contract.php';
+
+  employeeSubject = new BehaviorSubject<any>(null);
+  employeeAction$ = this.employeeSubject.asObservable();
+
   constructor(private http: HttpClient) {}
   saveContract(data: Contract) {
     this.http
@@ -18,5 +23,10 @@ export class ContractService {
       .subscribe(data1 => {
         console.log(data1);
       });
+  }
+
+  setEmployeeData(employeeData) {
+    // this.employeeSubject.next(null);
+    this.employeeSubject.next(employeeData);
   }
 }

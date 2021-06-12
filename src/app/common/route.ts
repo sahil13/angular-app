@@ -10,6 +10,9 @@ import { PostComponent } from '../post/post.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { SpecsComponent } from '../specs/specs.component';
 import { EventDetailsActivator } from './event-details-activator';
+import { ProductComponent } from '../product/product.component';
+import { EmployeeComponent } from '../modules/contract/components/employee/employee.component';
+import { AddComponent } from '../add/add.component';
 
 export const route: Routes = [
   { path: '', component: DashboardComponent },
@@ -32,5 +35,8 @@ export const route: Routes = [
     canActivate: [EventDetailsActivator]
   },
   { path: 'create', component: CreateEventComponent },
-  { path: 'contracts', component: ContractsComponent }
+  { path: 'contracts', component: ContractsComponent },
+  { path: 'product', component: ProductComponent },
+  { path: 'employee', component: EmployeeComponent },
+  { path: 'add', component: AddComponent },
 ];

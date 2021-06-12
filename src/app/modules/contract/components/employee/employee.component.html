@@ -1,0 +1,19 @@
+<form [formGroup]="employeeForm">
+    <div>
+        <label>Name</label>
+        <input type="text" formControlName="name" />
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="text" formControlName="email" />
+    </div>
+    <div>
+        <label>Code</label>
+        <input type="text" formControlName="employeeCode" />
+    </div>
+    <app-skills [skills]="employeeForm.get('skills')"></app-skills>
+
+    <input type="button" value="submit" (click)="submitRecord()" />
+
+</form>
+

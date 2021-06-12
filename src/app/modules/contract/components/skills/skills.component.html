@@ -1,0 +1,35 @@
+<div class="skill">
+    <div>
+        <label>Skill Name</label>
+        <input type="text" [(ngModel)]="skillName" />
+    </div>
+    <div>
+        <label>Experience</label>
+        <input type="text" [(ngModel)]="experience" />
+    </div>
+    <div>
+        <label>Rate</label>
+        <input type="text" [(ngModel)]="rate" />
+    </div>
+
+    <div>
+        <input type="button" (click)="addSkills()" value="Add" />
+    </div>
+</div>
+
+<table>
+    <tr>
+        <td>Sr.No</td>
+        <td>Skill Name</td>
+        <td>Experience</td>
+        <td>Rate</td>
+    </tr>
+    <ng-container *ngFor="let skill of this.skills['controls'];let i=index">
+        <tr>
+            <td>{{i+1}}</td>
+            <td>{{this.skills.controls[i].value.skillName}}</td>
+            <td>{{this.skills.controls[i].value.experience}}</td>
+            <td>{{this.skills.controls[i].value.rate}}</td>
+        </tr>
+    </ng-container>
+</table>

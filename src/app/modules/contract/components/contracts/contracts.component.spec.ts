@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { AppModule } from 'src/app/app.module';
+import { ContractService } from 'src/app/common/contract.service';
 
 import { ContractsComponent } from './contracts.component';
 
@@ -8,7 +11,8 @@ describe('ContractsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContractsComponent ]
+      declarations: [ ContractsComponent ],
+      imports: [ReactiveFormsModule]
     })
     .compileComponents();
   }));

@@ -34,6 +34,14 @@ export class PostComponent implements AfterContentInit {
   ngOnInit(): void {
     console.log('i am implemented', this.postsService.post$);
     this.posts = this.postsService.post$;
+    this.fetchDropDownValues();
+  }
+
+  fetchDropDownValues() {
+    this.postsService.fetchDropDownValues().subscribe(reposnse => {
+      console.log('committee', reposnse[0]);
+      console.log('department=', reposnse[1]);
+    });
   }
 
   ngAfterContentInit() {
