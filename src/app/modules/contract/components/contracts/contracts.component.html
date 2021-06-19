@@ -12,6 +12,20 @@
 <ng-container *ngTemplateOutlet="loading;context:{price:5}">
 </ng-container>
 
+
+<div>
+    <form [formGroup]="employeeForm">
+        <p-calendar formControlName="email" dateFormat="dd.mm.yy"></p-calendar>
+        <p-calendar formControlName="cfmEmail" dateFormat="dd.mm.yy"></p-calendar>
+        <div class="error" *ngIf="employeeForm.get('cfmEmail').touched && employeeForm.errors?.matchEmails">
+                start Date should be less than end date
+        </div>
+        <input type="submit" value="Submit" />
+        {{employeeForm.status}}
+    </form>
+
+</div>
+
 <div class="p-grid">
     <div class="p-col-10 p-offset-1">
         <div class="p-grid mt-10">

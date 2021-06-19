@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Constants } from 'src/app/common/constant';
 import { ContractService } from '../../../../common/contract.service';
+import { ContractValidators } from './contract.validators.ts';
 
 @Component({
   selector: 'app-contracts',
@@ -16,6 +17,14 @@ export class ContractsComponent implements OnInit {
       admin: ['write', 'update', 'delete', 'read']
     }
   ];
+
+  employeeForm = this.fb.group(
+    {
+      email: new FormControl('', [Validators.required]),
+      cfmEmail: new FormControl('', [Validators.required])
+    },
+    { validators: ContractValidators.matchEmails }
+  );
 
   users: any = [{ name: 'sahil', role: 'admin' }];
 
@@ -35,6 +44,7 @@ export class ContractsComponent implements OnInit {
 
   ngOnInit(): void {
     this.contractsData = this.contractService.getContracts();
+    
   }
 
   toggle(flg) {
